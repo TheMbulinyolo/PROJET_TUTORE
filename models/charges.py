@@ -1,54 +1,53 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Charge:
     """
     Classe de base pour les charges.
     """
+    pass
 
-    def force_resultante(self) -> float:
-        """
-        Chaque type de charge doit implémenter sa propre méthode pour calculer la force résultante.
-        """
-        raise NotImplementedError()
-    
-    def position_resultante(self) -> float:
-        """
-        Chaque type de charge doit implémenter sa propre méthode pour calculer la position de la force résultante.
-        """
-        raise NotImplementedError()
-    
+
 @dataclass
 class ForcePonctuelle(Charge):
     """
-    Représente une force ponctuelle appliquée à une position donnée.
+    Force ponctuelle 2D appliquée en x.
+
+    fx > 0 : force horizontale vers la droite
+    fx < 0 : force horizontale vers la gauche
+
+    fy > 0 : force verticale vers le haut
+    fy < 0 : force verticale vers le bas
     """
-    valeur: float
+    fx: float
+    fy: float
     x: float
 
-    def force_resultante(self) -> float:
-        return self.valeur
-    
-    def position_resultante(self) -> float:
-        return self.x
-    
+    def force_x(self) -> float:
+        return self.fx
+
+    def force_y(self) -> float:
+        return self.fy
+
+
 @dataclass
 class ForceRepartieUniforme(Charge):
     """
-    Charge repartie uniformément sur une longueur donnée.
+    Charge répartie uniformément verticale.
 
-    q < 0 : charge vers le bas
-    q > 0 : charge vers le haut
+    q > 0 : vers le haut
+    q < 0 : vers le bas
     """
     q: float
-    debut : float
+    debut: float
     fin: float
 
-    def longuer(self) -> float:
+    def longueur(self) -> float:
         return self.fin - self.debut
-    
+
     def force_resultante(self) -> float:
-        return self.q * self.longuer()
-    
+        return self.q * self.longueur()
+
     def position_resultante(self) -> float:
         return (self.debut + self.fin) / 2
