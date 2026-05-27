@@ -12,7 +12,7 @@ class Charge:
         """
         raise NotImplementedError()
     
-    def resultant_position(self) -> float:
+    def position_resultante(self) -> float:
         """
         Chaque type de charge doit implémenter sa propre méthode pour calculer la position de la force résultante.
         """
