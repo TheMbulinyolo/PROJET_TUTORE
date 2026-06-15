@@ -1,0 +1,22 @@
+2026-06-13 11:54:18,069 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.example.json
+2026-06-13 11:54:18,112 | INFO | Calcul termine avec succes : /tmp/projet_tutore_output.json
+2026-06-15 11:27:42,670 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
+2026-06-15 11:27:42,838 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/output.json
+2026-06-15 11:28:39,907 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
+2026-06-15 11:28:40,040 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/output.json
+2026-06-15 11:29:10,734 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
+2026-06-15 11:29:10,869 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/output.json
+2026-06-15 19:19:29,583 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
+2026-06-15 19:19:29,583 | WARNING | Donnees invalides : Fichier d'entree introuvable : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
+2026-06-15 19:20:56,915 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/input.json
+2026-06-15 19:20:57,061 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/output.json
+2026-06-15 19:21:19,331 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/input.json
+2026-06-15 19:21:19,469 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/output.json
+2026-06-15 19:21:33,013 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/input.json
+2026-06-15 19:21:33,139 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/output.json
+2026-06-15 19:23:02,637 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
+2026-06-15 19:23:02,638 | WARNING | Donnees invalides : Fichier d'entree introuvable : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
+2026-06-15 19:23:34,150 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/input.json
+2026-06-15 19:23:34,269 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/output.json
+2026-06-15 19:24:17,245 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/input.json
+2026-06-15 19:24:17,379 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/DATA/output.json

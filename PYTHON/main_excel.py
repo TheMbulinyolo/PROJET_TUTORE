@@ -34,14 +34,14 @@ def main() -> int:
     chemin_entree = (
         Path(sys.argv[1]).resolve()
         if len(sys.argv) > 1
-        else RACINE_PROJET / "data" / "input.json"
+        else RACINE_PROJET / "DATA" / "input.json"
     )
     chemin_sortie = (
         Path(sys.argv[2]).resolve()
         if len(sys.argv) > 2
-        else RACINE_PROJET / "data" / "output.json"
+        else RACINE_PROJET / "DATA" / "output.json"
     )
-    configurer_journal(RACINE_PROJET / "logs" / "log.txt")
+    configurer_journal(RACINE_PROJET / "LOGS" / "log.txt")
 
     try:
         logging.info("Lecture de %s", chemin_entree)

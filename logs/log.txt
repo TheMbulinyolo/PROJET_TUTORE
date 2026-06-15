@@ -1,8 +1,0 @@
-2026-06-13 11:54:18,069 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.example.json
-2026-06-13 11:54:18,112 | INFO | Calcul termine avec succes : /tmp/projet_tutore_output.json
-2026-06-15 11:27:42,670 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
-2026-06-15 11:27:42,838 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/output.json
-2026-06-15 11:28:39,907 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
-2026-06-15 11:28:40,040 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/output.json
-2026-06-15 11:29:10,734 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.json
-2026-06-15 11:29:10,869 | INFO | Calcul termine avec succes : /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/output.json
