@@ -945,12 +945,32 @@ Private Function JSONTexte(ByVal valeur As Variant) As String
 End Function
 
 Private Function JSONNombre(ByVal valeur As Variant) As String
+    Dim texte As String
+    Dim separateurDecimal As String
+    Dim positionExposant As Long
+
     If Not EstNombreValide(valeur) Then
         Err.Raise vbObjectError + 1401, "JSONNombre", _
             "Valeur numerique invalide : " & CStr(valeur)
     End If
-    JSONNombre = Replace(Format$(CDbl(valeur), "0.################"), _
-        Application.International(xlDecimalSeparator), ".")
+
+    separateurDecimal = Application.International(xlDecimalSeparator)
+    texte = Trim$(CStr(CDbl(valeur)))
+    If separateurDecimal <> "." Then
+        texte = Replace(texte, separateurDecimal, ".")
+    End If
+
+    positionExposant = InStr(1, texte, "E", vbTextCompare)
+    If positionExposant > 0 Then
+        If InStr(1, Left$(texte, positionExposant - 1), ".", vbBinaryCompare) = 0 Then
+            texte = Left$(texte, positionExposant - 1) & ".0" & _
+                Mid$(texte, positionExposant)
+        End If
+    ElseIf InStr(1, texte, ".", vbBinaryCompare) = 0 Then
+        texte = texte & ".0"
+    End If
+
+    JSONNombre = texte
 End Function
 
 Private Sub AjouterElementJSON(ByRef liste As String, ByVal element As String)
