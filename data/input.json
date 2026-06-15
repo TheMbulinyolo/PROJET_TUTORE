@@ -1,6 +1,6 @@
 {
   "poutre": {
-    "longueur": 6.0,
+    "longueur": 10.0,
     "unite": "m"
   },
   "appuis": [
@@ -20,7 +20,7 @@
       "id": "P1",
       "type": "ponctuelle",
       "position": 3.0,
-      "valeur": -10.0,
+      "valeur": -16.0,
       "unite": "kN"
     },
     {
@@ -36,6 +36,7 @@
     "calcul_reactions": true,
     "calcul_efforts": true,
     "calcul_diagrammes": true,
-    "pas_discretisation": 0.1
+    "pas_discretisation": 0.1,
+    "position_efforts": 3.0
   }
 }
