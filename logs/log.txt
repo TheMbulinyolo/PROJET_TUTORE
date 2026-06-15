@@ -1,0 +1,2 @@
+2026-06-13 11:54:18,069 | INFO | Lecture de /media/mbulinyolo-eddy/main_disk4/CODES/PROJET_TUTORÉ/data/input.example.json
+2026-06-13 11:54:18,112 | INFO | Calcul termine avec succes : /tmp/projet_tutore_output.json
