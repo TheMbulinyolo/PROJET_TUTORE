@@ -15,9 +15,9 @@ Private Const FEUILLE_CHARGES As String = "CHARGES"
 Private Const FEUILLE_RESULTATS As String = "RESULTATS"
 Private Const FEUILLE_DIAGRAMMES As String = "DIAGRAMMES"
 
-Private Const FICHIER_ENTREE As String = "data\input_structure.json"
-Private Const FICHIER_SORTIE As String = "data\resultats.json"
-Private Const SCRIPT_PYTHON As String = "python\main_excel.py"
+Private Const FICHIER_ENTREE As String = "DATA\input_structure.json"
+Private Const FICHIER_SORTIE As String = "DATA\resultats.json"
+Private Const SCRIPT_PYTHON As String = "PYTHON\main_excel.py"
 
 Private Const PREMIERE_LIGNE_APPUI As Long = 20
 Private Const DERNIERE_LIGNE_APPUI As Long = 29
@@ -928,7 +928,7 @@ End Function
 '
 ' Ce parseur ne cherche pas a remplacer une bibliotheque JSON generaliste.
 ' Il gere les objets, chaines, nombres et tableaux numeriques produits par
-' core/interface/exporteur.py, y compris les accolades dans les chaines.
+' CORE/interface/exporteur.py, y compris les accolades dans les chaines.
 ' =============================================================================
 
 Private Function JSONTexte(ByVal valeur As Variant) As String

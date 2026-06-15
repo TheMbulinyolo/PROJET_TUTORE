@@ -15,9 +15,9 @@ RACINE_PROJET = Path(__file__).resolve().parents[1]
 if str(RACINE_PROJET) not in sys.path:
     sys.path.insert(0, str(RACINE_PROJET))
 
-from core.interface.exporteur import construire_sortie_erreur, ecrire_json
-from core.interface.orchestrateur import executer_calcul
-from core.interface.parseur import ErreurValidation, lire_et_parser
+from CORE.interface.exporteur import construire_sortie_erreur, ecrire_json
+from CORE.interface.orchestrateur import executer_calcul
+from CORE.interface.parseur import ErreurValidation, lire_et_parser
 
 
 def configurer_journal(chemin: Path) -> None:
