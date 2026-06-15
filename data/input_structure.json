@@ -1,0 +1,19 @@
+﻿{
+  "poutre": {
+    "longueur": 15.,
+    "unite": "m"
+  },
+  "appuis": [
+    {"id": "A", "type": "rotule", "position": 0.},
+    {"id": "B", "type": "rouleau", "position": 15.}
+  ],
+  "charges": [
+    {"id": "Q", "type": "ponctuelle", "position": 10., "valeur": -10., "fx": 0., "fy": -10., "unite": "kN"}
+  ],
+  "options": {
+    "calcul_reactions": true,
+    "calcul_efforts": true,
+    "calcul_diagrammes": true,
+    "pas_discretisation": 0.306122448979592
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "statut": "ERREUR",
+  "message": "JSON invalide a la ligne 3, colonne 19.",
+  "type_erreur": "ErreurValidation",
+  "isostatique": false,
+  "reactions": {},
+  "efforts_position": null,
+  "maxima": null,
+  "diagrammes": null
+}
