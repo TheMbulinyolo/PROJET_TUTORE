@@ -2,9 +2,9 @@ from .equilibre import SolveurEquilibre2D
 from .efforts_internes import CalculEffortsInternes2D
 from .diagrammes import GenerateurDiagrammes2D
 
-from core.models.poutre import Poutre
-from core.models.supports import Rotule, Rouleau
-from core.models.charges import ForcePonctuelle, ForceRepartieUniforme
+from CORE.models.poutre import Poutre
+from CORE.models.supports import Rotule, Rouleau
+from CORE.models.charges import ForcePonctuelle, ForceRepartieUniforme
 
 
 class ResolverIsostatique2D:

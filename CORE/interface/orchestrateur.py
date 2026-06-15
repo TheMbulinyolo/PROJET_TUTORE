@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from core.resolver.resolver import ResolverIsostatique2D
+from CORE.resolver.resolver import ResolverIsostatique2D
 
 from .parseur import DonneesCalcul, calculer_nombre_points
 

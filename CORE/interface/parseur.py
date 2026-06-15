@@ -8,9 +8,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from core.models.charges import ForcePonctuelle, ForceRepartieUniforme
-from core.models.poutre import Poutre
-from core.models.supports import Encastrement, Rotule, Rouleau
+from CORE.models.charges import ForcePonctuelle, ForceRepartieUniforme
+from CORE.models.poutre import Poutre
+from CORE.models.supports import Encastrement, Rotule, Rouleau
 
 
 class ErreurValidation(ValueError):

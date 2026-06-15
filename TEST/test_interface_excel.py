@@ -3,8 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from core.interface.orchestrateur import executer_calcul
-from core.interface.parseur import ErreurValidation, lire_et_parser, parser_donnees
+from CORE.interface.orchestrateur import executer_calcul
+from CORE.interface.parseur import ErreurValidation, lire_et_parser, parser_donnees
 
 
 CAS_SIMPLE = {
