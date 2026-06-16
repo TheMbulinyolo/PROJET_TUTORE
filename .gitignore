@@ -1,2 +1,5 @@
 ENV
 dist
+build
+logs
+moteur_calcul.spec
