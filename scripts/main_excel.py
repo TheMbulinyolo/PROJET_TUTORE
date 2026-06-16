@@ -12,12 +12,7 @@ from pathlib import Path
 
 
 if getattr(sys, "frozen", False):
-    DOSSIER_EXECUTABLE = Path(sys.executable).resolve().parent
-    RACINE_PROJET = (
-        DOSSIER_EXECUTABLE.parent
-        if DOSSIER_EXECUTABLE.name.lower() == "dist"
-        else DOSSIER_EXECUTABLE
-    )
+    RACINE_PROJET = Path(sys.executable).resolve().parent
 else:
     RACINE_PROJET = Path(__file__).resolve().parents[1]
 
@@ -29,13 +24,10 @@ from core.interface.orchestrateur import executer_calcul
 from core.interface.parseur import ErreurValidation, lire_et_parser
 
 
-def configurer_journal(chemin: Path) -> None:
-    chemin.parent.mkdir(parents=True, exist_ok=True)
+def configurer_journal() -> None:
     logging.basicConfig(
-        filename=chemin,
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(message)s",
-        encoding="utf-8",
     )
 
 
@@ -43,14 +35,14 @@ def main() -> int:
     chemin_entree = (
         Path(sys.argv[1]).resolve()
         if len(sys.argv) > 1
-        else RACINE_PROJET / "data" / "input.json"
+        else RACINE_PROJET / "data" / "input_structure.json"
     )
     chemin_sortie = (
         Path(sys.argv[2]).resolve()
         if len(sys.argv) > 2
-        else RACINE_PROJET / "data" / "output.json"
+        else RACINE_PROJET / "data" / "resultats.json"
     )
-    configurer_journal(RACINE_PROJET / "logs" / "log.txt")
+    configurer_journal()
 
     try:
         logging.info("Lecture de %s", chemin_entree)

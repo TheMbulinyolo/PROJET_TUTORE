@@ -18,7 +18,7 @@ Private Const FEUILLE_DIAGRAMMES As String = "DIAGRAMMES"
 Private Const FICHIER_ENTREE As String = "data\input_structure.json"
 Private Const FICHIER_SORTIE As String = "data\resultats.json"
 Private Const SCRIPT_PYTHON As String = "scripts\main_excel.py"
-Private Const EXECUTABLE_MOTEUR As String = "dist\moteur_calcul.exe"
+Private Const EXECUTABLE_MOTEUR As String = "moteur_calcul.exe"
 
 Private Const PREMIERE_LIGNE_APPUI As Long = 20
 Private Const DERNIERE_LIGNE_APPUI As Long = 29
@@ -432,6 +432,12 @@ Private Sub ExporterDonneesSansValidation()
 
     CreerDossierSiAbsent CheminRacineProjet() & "\data"
     EcrireFichierTexte CheminEntree(), json
+
+    If TailleFichier(CheminEntree()) = 0 Then
+        Err.Raise vbObjectError + 1005, "ExporterDonneesSansValidation", _
+            "Le fichier d'entree a ete cree mais il est vide :" & vbCrLf & _
+            CheminEntree()
+    End If
 End Sub
 
 
@@ -469,6 +475,11 @@ Private Sub LancerPythonSansMessage()
     If Not FichierExiste(CheminEntree()) Then
         Err.Raise vbObjectError + 1002, "LancerCalculPython", _
             "Fichier d'entree introuvable : " & CheminEntree()
+    End If
+    If TailleFichier(CheminEntree()) = 0 Then
+        Err.Raise vbObjectError + 1005, "LancerCalculPython", _
+            "Le fichier d'entree JSON est vide. Relancez d'abord l'export :" & _
+            vbCrLf & CheminEntree()
     End If
 
     If FichierExiste(sortie) Then Kill sortie
@@ -546,6 +557,7 @@ Private Sub ImporterResultatsSansMessage()
     ReinitialiserResultats
     ws.Range("C50").Value = statut
 
+    PreparerZonesReactions ws
     reactions = JSONLireValeurBrute(json, "reactions")
     Set paires = JSONLireObjetNombres(reactions)
     For Each cle In paires.Keys
@@ -594,25 +606,32 @@ Private Sub ImporterResultatsSansMessage()
 End Sub
 
 Private Sub EcrireReaction(ByVal ws As Worksheet, ByVal nom As String, ByVal valeur As Double)
-    Dim ligne As Long
     Dim ligneLibre As Long
 
-    For ligne = 21 To 27
-        If StrComp(Trim$(CStr(ws.Cells(ligne, "B").Value)), nom, vbTextCompare) = 0 Then
-            ws.Cells(ligne, "D").Value = valeur
-            EcrireReactionZoneSortie ws, nom, valeur
-            Exit Sub
-        End If
-        If ligneLibre = 0 And Trim$(CStr(ws.Cells(ligne, "D").Value)) = "" Then
-            ligneLibre = ligne
-        End If
-    Next ligne
-
-    If ligneLibre = 0 Then ligneLibre = 27
+    ligneLibre = PremiereLigneReactionLibre(ws)
     ws.Cells(ligneLibre, "B").Value = nom
+    ws.Cells(ligneLibre, "C").Value = NomAppuiDepuisReaction(nom)
     ws.Cells(ligneLibre, "D").Value = valeur
     EcrireReactionZoneSortie ws, nom, valeur
 End Sub
+
+Private Sub PreparerZonesReactions(ByVal ws As Worksheet)
+    ws.Range("B21:D27").ClearContents
+    ws.Range("B43:C45").ClearContents
+End Sub
+
+Private Function PremiereLigneReactionLibre(ByVal ws As Worksheet) As Long
+    Dim ligne As Long
+
+    For ligne = 21 To 27
+        If Trim$(CStr(ws.Cells(ligne, "B").Value)) = "" Then
+            PremiereLigneReactionLibre = ligne
+            Exit Function
+        End If
+    Next ligne
+
+    PremiereLigneReactionLibre = 27
+End Function
 
 Private Sub EcrireReactionZoneSortie(ByVal ws As Worksheet, _
                                      ByVal nom As String, _
@@ -620,12 +639,32 @@ Private Sub EcrireReactionZoneSortie(ByVal ws As Worksheet, _
     Dim ligne As Long
 
     For ligne = 43 To 45
-        If StrComp(Trim$(CStr(ws.Cells(ligne, "B").Value)), nom, vbTextCompare) = 0 Then
+        If Trim$(CStr(ws.Cells(ligne, "B").Value)) = "" _
+           Or StrComp(Trim$(CStr(ws.Cells(ligne, "B").Value)), nom, vbTextCompare) = 0 Then
+            ws.Cells(ligne, "B").Value = nom
             ws.Cells(ligne, "C").Value = valeur
             Exit Sub
         End If
     Next ligne
 End Sub
+
+Private Function NomAppuiDepuisReaction(ByVal nomReaction As String) As String
+    Dim texte As String
+    Dim suffixe As String
+
+    texte = Trim$(nomReaction)
+    If Len(texte) <= 1 Then
+        NomAppuiDepuisReaction = texte
+        Exit Function
+    End If
+
+    suffixe = LCase$(Right$(texte, 1))
+    If suffixe = "x" Or suffixe = "y" Or suffixe = "m" Then
+        NomAppuiDepuisReaction = Left$(texte, Len(texte) - 1)
+    Else
+        NomAppuiDepuisReaction = texte
+    End If
+End Function
 
 Private Sub EcrireMaximum(ByVal ws As Worksheet, _
                           ByVal ligne As Long, _
@@ -788,6 +827,14 @@ Public Function FichierExiste(ByVal chemin As String) As Boolean
     FichierExiste = (Len(Dir$(chemin, vbNormal Or vbHidden Or vbSystem)) > 0)
 End Function
 
+Public Function TailleFichier(ByVal chemin As String) As Long
+    If Not FichierExiste(chemin) Then
+        TailleFichier = 0
+    Else
+        TailleFichier = FileLen(chemin)
+    End If
+End Function
+
 Public Function DossierExiste(ByVal chemin As String) As Boolean
     Dim fso As Object
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -842,6 +889,7 @@ Public Sub EcrireFichierTexte(ByVal chemin As String, ByVal contenu As String)
         .Charset = "utf-8"
         .Open
         .WriteText contenu
+        .Position = 0
         .SaveToFile chemin, 2
         .Close
     End With
@@ -859,9 +907,7 @@ Public Sub AfficherErreur(ByVal contexte As String, _
 End Sub
 
 Private Function CheminRacineProjet() As String
-    Dim fso As Object
     Dim dossierClasseur As String
-    Dim dossierParent As String
 
     dossierClasseur = ThisWorkbook.Path
     If dossierClasseur = "" Then
@@ -869,21 +915,7 @@ Private Function CheminRacineProjet() As String
             "Enregistrez le classeur avant de lancer le calcul."
     End If
 
-    If FichierExiste(dossierClasseur & "\" & SCRIPT_PYTHON) Then
-        CheminRacineProjet = dossierClasseur
-        Exit Function
-    End If
-
-    Set fso = CreateObject("Scripting.FileSystemObject")
-    dossierParent = fso.GetParentFolderName(dossierClasseur)
-    If FichierExiste(dossierParent & "\" & SCRIPT_PYTHON) Then
-        CheminRacineProjet = dossierParent
-        Exit Function
-    End If
-
-    Err.Raise vbObjectError + 1303, "CheminRacineProjet", _
-        "Impossible de localiser la racine du projet depuis :" & vbCrLf & _
-        dossierClasseur
+    CheminRacineProjet = dossierClasseur
 End Function
 
 Private Function CheminEntree() As String
