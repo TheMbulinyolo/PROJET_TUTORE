@@ -1,6 +1,6 @@
 {
   "poutre": {
-    "longueur": 10.0,
+    "longueur": 15.0,
     "unite": "m"
   },
   "appuis": [
@@ -12,7 +12,7 @@
     {
       "id": "B",
       "type": "rouleau",
-      "position": 6.0
+      "position": 5.0
     }
   ],
   "charges": [
